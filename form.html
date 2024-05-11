@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>Feedback Form</h1>
+    </div>
+
+    <div data-role="content">
+        <form id="feedbackForm">
+            <label for="flip-1">Satisfied?</label>
+            <select name="flip-1" id="flip-1" data-role="slider">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label for="feedbackText">Additional Comments:</label>
+            <textarea name="feedbackText" id="feedbackText"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="feedbackResponse" style="display:none;">
+            <h2>Thank you for your feedback!</h2>
+            <p>We appreciate your time.</p>
+            <p>Your response: <span id="feedbackValue"></span></p>
+            <p>Additional comments: <span id="feedbackComments"></span></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).on("pagecreate", function () {
+        $("#feedbackForm").submit(function (event) {
+            event.preventDefault();
+            var satisfied = $("#flip-1").val();
+            var comments = $("#feedbackText").val();
+
+            $("#feedbackValue").text(satisfied);
+            $("#feedbackComments").text(comments);
+            $("#feedbackResponse").show();
+        });
+    });
+</script>
+
+</body>
+</html>
